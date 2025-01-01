@@ -7,8 +7,13 @@ export default function HomeScreen() {
     <View>
       <FlatList
         data={products}
+        numColumns={ 2 }
+        contentContainerClassName=" gap-2 p-4"
+        columnWrapperClassName="gap-2" 
         keyExtractor={(item) => item._id}
-        renderItem={({ item }) => <ProductListItem product={item} />}
+        renderItem={({ item }) => (
+          <ProductListItem product={{ ...item, manufacturer: item.manufacturer || "Unknown" }} />
+        )}
       />
     </View>
   );

@@ -6,6 +6,8 @@ import { Box } from "./ui/box";
 import { VStack } from "./ui/vstack";
 import { Heading } from "./ui/heading";
 import { Image } from "./ui/image";
+import { Link } from "expo-router";
+import { formatCurrency } from "../utils/formatter";
 
 interface Product {
   _id: string;
@@ -34,6 +36,9 @@ interface Product {
 export function ProductListItem({ product }: { product: Product }) {
   return (
     <Card className="p-5 rounded-lg max-w-[360px]  flex-1 ">
+      <Link
+        href={ `/product/${product._id}` }
+      > 
       {product.images.length > 0 && (
         <Image
           source={product.images[0].url}
@@ -41,28 +46,14 @@ export function ProductListItem({ product }: { product: Product }) {
           alt={`${product.name} image`}
           resizeMode="contain"
         />
-      )}
+      )}</Link>
       <Text className="text-sm font-normal mb-2 text-typography-700">
-        {product.category.map((cat) => cat.name).join(", ")}
-      </Text>
-      <VStack className="mb-6">
-        <Heading size="md" className="mb-4">
-          {product.name}
-        </Heading>
-        {/* <Text size="sm" isTruncated>
-          {product.description}
-        </Text> */}
-      </VStack>
-      <Box className="flex-col sm:flex-row">
-        <Button className="px-4 py-2 mr-0 mb-3 sm:mr-3 sm:mb-0 sm:flex-1">
-          <ButtonText size="sm">Add to cart</ButtonText>
-        </Button>
-        <Button variant="outline" className="px-4 py-2 border-outline-300 sm:flex-1">
-          <ButtonText size="sm" className="text-typography-600">
-            Wishlist
-          </ButtonText>
-        </Button>
-      </Box>
+        {product.name}
+      </Text> 
+        <Heading size="md" className="">
+          {formatCurrency(product.price)}
+        </Heading>  
+ 
     </Card>
   );
 }

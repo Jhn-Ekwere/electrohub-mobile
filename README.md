@@ -46,5 +46,5 @@ Ensure you have the following installed:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Jhn-Ekwere/electrohub.git
+   git clone [https://github.com/Jhn-Ekwere/electrohub.git](https://github.com/Jhn-Ekwere/electrohub-mobile.git)
    cd electrohub

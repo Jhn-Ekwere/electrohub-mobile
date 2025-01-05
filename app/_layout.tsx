@@ -1,19 +1,20 @@
 import { Badge, BadgeText } from "@/components/ui/badge";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-import { Icon } from "@/components/ui/icon";
-import { Text } from "@/components/ui/text";
+import { Icon } from "@/components/ui/icon"; 
 import { VStack } from "@/components/ui/vstack";
 import "@/global.css";
+import { useAuth } from "@/store/authStore";
 import { useCartStore } from "@/store/cardStore";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Link, Stack } from "expo-router";
-import { ShoppingCart } from "lucide-react-native";
+import { ShoppingCart, User } from "lucide-react-native";
 import React from "react";
-import { Pressable, TouchableOpacity } from "react-native";
+import {  TouchableOpacity } from "react-native";
 
 const queryClient = new QueryClient();
 const RootLayout: React.FC = () => {
   const cartItemNum = useCartStore((state: any) => state.items.length);
+  const isLoggedIn = useAuth((state: any) => state.token);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -21,8 +22,8 @@ const RootLayout: React.FC = () => {
         <Stack
           screenOptions={{
             headerRight: () => (
-                <Link href="/cart" asChild>
-              <TouchableOpacity>
+              <Link href="/cart" asChild>
+                <TouchableOpacity>
                   <VStack>
                     {cartItemNum !== 0 && (
                       <Badge
@@ -34,8 +35,8 @@ const RootLayout: React.FC = () => {
                     )}
                     <Icon as={ShoppingCart} />
                   </VStack>
-              </TouchableOpacity>
-                </Link>
+                </TouchableOpacity>
+              </Link>
             ),
           }}
         >
@@ -44,12 +45,27 @@ const RootLayout: React.FC = () => {
             options={{
               title: "Shop",
               headerTitleAlign: "center",
+              headerLeft: () =>
+                !isLoggedIn && (
+                  <Link href="/login" asChild>
+                    <TouchableOpacity>
+                      <Icon as={User} />
+                    </TouchableOpacity>
+                  </Link>
+                ),
             }}
           />
           <Stack.Screen
             name="cart"
             options={{
               title: "Cart",
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen
+            name="login"
+            options={{
+              title: "Login",
               headerTitleAlign: "center",
             }}
           />

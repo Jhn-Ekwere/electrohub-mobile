@@ -1,8 +1,6 @@
 import React from "react";
-import { useCartStore } from "@/store/cardStore";
-import { Box } from "@/components/ui/box";
-import { FlatList } from "react-native";
-import { Center } from "@/components/ui/center";
+import { useCartStore } from "@/store/cardStore"; 
+import { FlatList } from "react-native"; 
 import { HStack } from "@/components/ui/hstack";
 import { Text } from "@/components/ui/text";
 import { VStack } from "@/components/ui/vstack";

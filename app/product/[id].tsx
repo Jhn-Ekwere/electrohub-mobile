@@ -19,7 +19,7 @@ const details = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
   const toast = useToast();
 
-  const addToCart = useCartStore((state: any) => state.addProductToCart); 
+  const addToCart = useCartStore((state:any) => state.addProductToCart); 
 
   const cartHandler = () => {
     addToCart(product);

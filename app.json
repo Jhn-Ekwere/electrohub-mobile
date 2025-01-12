@@ -1,8 +1,7 @@
-
 {
   "expo": {
     "name": "Electrohub",
-    "slug": "electrohub",
+    "slug": "electrohub-app",
     "description": "Power Your Projects with Quality Electronic Components",
     "scheme": "electrihub",
     "version": "1.0.0",
@@ -46,6 +45,7 @@
       "eas": {
         "projectId": "c5eab3e4-53c7-43ce-968a-bb72868642f9"
       }
-    }
+    },
+    "owner": "ekwere"
   }
 }

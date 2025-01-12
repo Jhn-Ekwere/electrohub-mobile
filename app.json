@@ -1,8 +1,8 @@
 
 {
   "expo": {
-    "name": "Electrohub-App",
-    "slug": "electrohub-app",
+    "name": "Electrohub",
+    "slug": "electrohub",
     "description": "Power Your Projects with Quality Electronic Components",
     "scheme": "electrihub",
     "version": "1.0.0",
@@ -16,15 +16,21 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
+      "name": "Electrohub",
+      "slug": "electrohub",
+      "owner": "ekwere",
       "supportsTablet": true,
-       "bundleIdentifier": "com.ekwere.electrohub"
+      "bundleIdentifier": "com.ekwere.electrohub"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff",
-       "bundleIdentifier": "com.ekwere.electrohub"
-      }
+        "backgroundColor": "#ffffff"
+      },
+      "name": "Electrohub",
+      "slug": "electrohub",
+      "owner": "ekwere",
+      "bundleIdentifier": "com.ekwere.electrohub"
     },
     "web": {
       "favicon": "./assets/favicon.png",

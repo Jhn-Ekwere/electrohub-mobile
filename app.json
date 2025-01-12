@@ -1,8 +1,9 @@
+
 {
   "expo": {
     "name": "Electrohub-App",
     "slug": "electrohub-app",
-    "description": "  Power Your Projects with Quality Electronic Components",
+    "description": "Power Your Projects with Quality Electronic Components",
     "scheme": "electrihub",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -35,7 +36,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "46acc4f8-53f8-4322-94cd-886a9084e459"
+        "projectId": "c5eab3e4-53c7-43ce-968a-bb72868642f9"
       }
     }
   }

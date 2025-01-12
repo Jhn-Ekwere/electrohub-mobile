@@ -29,7 +29,8 @@
       "name": "Electrohub",
       "slug": "electrohub",
       "owner": "ekwere",
-      "bundleIdentifier": "com.ekwere.electrohub"
+      "bundleIdentifier": "com.ekwere.electrohub",
+      "package": "com.ekwere.electrohub"
     },
     "web": {
       "favicon": "./assets/favicon.png",

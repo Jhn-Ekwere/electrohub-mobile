@@ -2,7 +2,7 @@
   "expo": {
     "name": "Electrohub-App",
     "slug": "electrohub-app",
-    "description":"  Power Your Projects with Quality Electronic Components",
+    "description": "  Power Your Projects with Quality Electronic Components",
     "scheme": "electrihub",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -25,10 +25,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png",
-       "bundler": "metro"
+      "bundler": "metro"
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "c5eab3e4-53c7-43ce-968a-bb72868642f9"
+      }
+    }
   }
 }

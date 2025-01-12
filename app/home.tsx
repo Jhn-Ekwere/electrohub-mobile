@@ -39,7 +39,7 @@ export default function Home() {
   if (error) return <Text>Error: {error.message}</Text>;
 
   return (
-    <VStack space="lg" className=" bg-background-0  " style={{ paddingTop: 40, paddingBottom: 220 }}>
+    <VStack space="lg" className=" bg-background-0  " style={{ paddingTop: 40, paddingBottom:220 }}>
       <Stack.Screen
         name="home"
         options={{

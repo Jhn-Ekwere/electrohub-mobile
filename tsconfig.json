@@ -6,12 +6,19 @@
       "@/*": [
         "./*"
       ],
-        "@components/*": [
-          "./src/components/*"
-        ],
+      "@components/*": [
+        "./src/components/*"
+      ],
       "tailwind.config": [
         "./tailwind.config.js"
       ]
     }
-  }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "src/**/*.png",
+    "src/**/*.svg",
+    "nativewind-env.d.ts"
+  ]
 }

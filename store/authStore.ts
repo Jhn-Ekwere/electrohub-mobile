@@ -4,40 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const useAuth = create(
     persist((set) => ({
-        isAuthenticated: false,
-        token: null,
-        isEmailVerified: false,
-        role: null,
-        profilePicture: null,
-        id: null,
-        firstName: null,
-        lastName: null,
-        email: null,
-        address: null,
-        phone: null,
-        likes: null,
-        dateOfBirth: null,
-        wishlist: null,
-        cart: null,
-        loginSuccess: (user: any) => set({
-            isAuthenticated: true,
-            token: user.token,
-            isEmailVerified: user.isEmailVerified,
-            role: user.role,
-            profilePicture: user.profilePicture,
-            id: user.id,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email,
-            address: user.address,
-            phone: user.phone,
-            likes: user.likes,
-            dateOfBirth: user.dateOfBirth,
-            wishlist: user.wishlist,
-            cart: user.cart
-        }),
-        // logout
-        logout: () => set({
+        user: {
             isAuthenticated: false,
             token: null,
             isEmailVerified: false,
@@ -52,7 +19,46 @@ export const useAuth = create(
             likes: null,
             dateOfBirth: null,
             wishlist: null,
-            cart: null
+            cart: null,
+        },
+        loginSuccess: (state: any) => set({
+            user: {
+                isAuthenticated: true,
+                token: state.token,
+                isEmailVerified: state.isEmailVerified,
+                role: state.role,
+                profilePicture: state.profilePicture,
+                id: state.id,
+                firstName: state.firstName,
+                lastName: state.lastName,
+                email: state.email,
+                address: state.address,
+                phone: state.phone,
+                likes: state.likes,
+                dateOfBirth: state.dateOfBirth,
+                wishlist: state.wishlist,
+                cart: state.cart
+            }
+        }),
+        // logout
+        logout: () => set({
+            user: {
+                isAuthenticated: false,
+                token: null,
+                isEmailVerified: false,
+                role: null,
+                profilePicture: null,
+                id: null,
+                firstName: null,
+                lastName: null,
+                email: null,
+                address: null,
+                phone: null,
+                likes: null,
+                dateOfBirth: null,
+                wishlist: null,
+                cart: null
+            }
         })
 
 

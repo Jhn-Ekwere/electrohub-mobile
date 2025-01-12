@@ -16,7 +16,8 @@ import { ActivityIndicator } from "react-native";
 import { Center } from "@/components/ui/center";
 import { Toast, ToastDescription, ToastTitle, useToast } from "@/components/ui/toast";
 import { useAuth } from "@/store/authStore";
-import { Redirect } from "expo-router";
+import { Redirect, Stack, useRouter } from "expo-router";
+import CustomHeader from "@/components/customHeader";
 
 // Define Zod schema
 const formSchema = z.object({
@@ -30,7 +31,8 @@ export default function LoginScreen() {
   const [showPassword, setShowPassword] = useState(false);
   const toast = useToast();
   const loginSuccess = useAuth((state: any) => state.loginSuccess);
-    const isLoggedIn = useAuth((state:any) => state.token);
+  const isLoggedIn = useAuth((state: any) => state.user.isAuthenticated);
+  const router = useRouter();
 
   const {
     control,
@@ -46,6 +48,7 @@ export default function LoginScreen() {
     onSuccess: (data) => {
       if (data) {
         loginSuccess(data);
+        router.push("/home");
       }
       reset();
     },
@@ -68,6 +71,7 @@ export default function LoginScreen() {
     onSuccess: (data) => {
       if (data) {
         loginSuccess(data);
+        router.push("/");
       }
       reset();
     },
@@ -96,10 +100,15 @@ export default function LoginScreen() {
   };
 
   if (isLoggedIn) {
-    return <Redirect href="/" />;
+    return router.push("/");
   }
   return (
     <FormControl className="p-4 border rounded-lg border-outline-300 bg-white m-4 max-w-[400px]">
+      <Stack.Screen
+        options={{
+          header: () => <CustomHeader title="Electrohub" right={false} />,
+        }}
+      />
       <VStack space="xl">
         <Heading className="text-typography-900 leading-1 pt-3 ">Login</Heading>
         <VStack space="xs">

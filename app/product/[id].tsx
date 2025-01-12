@@ -1,25 +1,26 @@
 import { fetchProductsByIdEP } from "@/api/products";
+import CustomHeader from "@/components/customHeader";
 import { Box } from "@/components/ui/box";
 import { Button, ButtonText } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Center } from "@/components/ui/center";
-import { Heading } from "@/components/ui/heading";
 import { Image } from "@/components/ui/image";
 import { Text } from "@/components/ui/text";
 import { Toast, ToastDescription, ToastTitle, useToast } from "@/components/ui/toast";
-import { VStack } from "@/components/ui/vstack"; 
+import { VStack } from "@/components/ui/vstack";
 import { useCartStore } from "@/store/cardStore";
 import { formatCurrency } from "@/utils/formatter";
 import { useQuery } from "@tanstack/react-query";
 import { Stack, useLocalSearchParams } from "expo-router";
+import { ShoppingBag, Star } from "lucide-react-native";
 import React from "react";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, ScrollView, View } from "react-native";
 
 const details = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
   const toast = useToast();
 
-  const addToCart = useCartStore((state:any) => state.addProductToCart); 
+  const addToCart = useCartStore((state: any) => state.addProductToCart);
 
   const cartHandler = () => {
     addToCart(product);
@@ -33,7 +34,7 @@ const details = () => {
         </Toast>
       ),
     });
-  }
+  };
 
   const {
     data: product,
@@ -50,38 +51,74 @@ const details = () => {
   if (error) return <Text>Error: {error.message}</Text>;
 
   return (
-    <Box className="p-6   flex-1 ">
-      <Stack.Screen options={{ title: product.name }} />
-      <Card className="p-5 rounded-lg   ">
-        {product.images.length > 0 && (
-          <Image
-            source={product.images[0].url}
-            className="mb-6 h-[240px] w-full rounded-md aspect-[4/3]"
-            alt={`${product.name} image`}
-            resizeMode="contain"
-          />
-        )}
-        <Text className="text-sm font-normal mb-2 text-typography-700">{product.name}</Text>
-        <VStack className="mb-6">
-          <Heading size="md" className="mb-4">
-            {formatCurrency(product.price)}
-          </Heading>
-          <Text size="sm" isTruncated>
-            {product.description}
+    <View className=" flex-1 bg-background-0  ">
+      <Stack.Screen options={{ header: () => <CustomHeader title={"Details"} left={true} right={true} /> }} />
+      <ScrollView
+        className=" p-4 flex-1 "
+        style={{
+          marginBottom: 100,
+        }}
+      >
+        <Card className=" rounded-lg   ">
+          <Box className="flex justify-between items-center rounded-lg bg-[#f3f3f5] mb-4 overflow-hidden ">
+            {product.images.length > 0 && (
+              <Image
+                source={product.images[0].url}
+                className="mb-6 h-[368.53px] w-full  aspect-[4/3]"
+                alt={`${product.name} image`}
+                resizeMode="contain"
+              />
+            )}
+          </Box>
+          <Text className="text-2xl font-bold mb-2 ">{product.name}</Text>
+          <VStack space="sm" className="">
+            <Box className=" flex-row items-center   ">
+              <Star size={20} color="#eab308" />
+              <View className=" flex-row " >
+                <Text className="ml-2 font-medium underline">{product.star}.0/5 </Text>
+                <Text className=" font-medium">({product.numReviews} reviews)</Text>
+              </View>
+            </Box>
+            <Text size="sm" isTruncated>
+              {product.description}
+            </Text>
+          </VStack>
+        </Card>
+      </ScrollView>
+      <Box
+        className=" items-center absolute w-full bottom-0 bg-background-0  px-8 left-0 flex-1  flex-row border-t border-outline-300 p-4"
+        style={{
+          position: "absolute",
+          bottom: 0,
+          width: "100%",
+          left: 0,
+          padding: 25,
+          gap: 30,
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexDirection: "row",
+        }}
+      >
+        <Box>
+          <Text size="lg" className="text-typography-600">
+            Price
           </Text>
-        </VStack>
-        <Box className="flex-col sm:flex-row">
-          <Button onPress={cartHandler} className="px-4 py-2 mr-0 mb-3 sm:mr-3 sm:mb-0 sm:flex-1">
-            <ButtonText size="sm">Add to cart</ButtonText>
-          </Button>
-          <Button variant="outline" className="px-4 py-2 border-outline-300 sm:flex-1">
-            <ButtonText size="sm" className="text-typography-600">
-              Wishlist
-            </ButtonText>
-          </Button>
+          <Text className=" text-2xl font-bold text-black">{formatCurrency(product.price)}</Text>
         </Box>
-      </Card>
-    </Box>
+        <Button
+          onPress={cartHandler}
+          className="flex-1 bg-black "
+          style={{
+            flex: 1,
+            height: 54,
+            borderRadius: 10,
+          }}
+        >
+          <ShoppingBag size="20" color="white" />
+          <ButtonText size="md">Add to Cart</ButtonText>
+        </Button>
+      </Box>
+    </View>
   );
 };
 
